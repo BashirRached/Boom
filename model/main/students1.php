@@ -135,9 +135,8 @@ window.onload=startclock;
 	<div class="span2">
           <div class="well sidebar-nav">
               <ul class="nav nav-list">
-              <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
-			<li class="active"><a href="students.php"><i class="icon-group icon-2x"></i>Manage </a>  </li>
-			<li><a href="addstudent.php"><i class="icon-group icon-2x"></i>Add License</a>     </li>
+              <li><a href="index1.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
+			
 
 			<br><br>	
 			<li>
@@ -157,74 +156,96 @@ window.onload=startclock;
 			<i class="icon-table"></i> Licenses
 			</div>
 			<ul class="breadcrumb">
-			<li><a href="index.php">Dashboard</a></li> /
+			<li><a href="index1.php">Dashboard</a></li> /
 			<li class="active">Licenses</li>
 			</ul>
 
 
 <div style="margin-top: -19px; margin-bottom: 21px;">
-<a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
-			<?php 
-			include('../connect.php');
-				$result = $db->prepare("SELECT * FROM student ORDER BY id DESC");
-				$result->execute();
-				$rowcount = $result->rowcount();
-			?>
-			
-		
-				<div style="text-align:center;">
-			Total Number of Licenses:  <font color="green" style="font:bold 22px 'Aleo';">[<?php echo $rowcount;?>]</font>
-			</div>
-			
-			
-</div>
+<a  href="index1.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
+
+<?php
+	include('../connect.php');
+	$id=$_GET['id'];
+	$result = $db->prepare("SELECT * FROM student WHERE id= :userid");
+	$result->bindParam(':userid', $id);
+	$result->execute();
+	for($i=0; $row = $result->fetch(); $i++){
+?>
+<link href="../style.css" media="screen" rel="stylesheet" type="text/css" />
+<center><h4><i class="icon-edit icon-large"></i> License Information</h4></center>
+<hr>
+<center><img src="../uploads/<?php echo $row['file'];?>" class="roundimage2"  alt=""/>
+<br><br>
+
+<table>
+<tr>
+<td> ID. : </td>
+<td style="padding: 10px;
+				border-top: 1px solid #fafafa;
+				background-color: #f4f4f4;
+				text-align: center;
+				color: #7d7d7d;"> <?php echo $row['b_id']; ?></td>
+</tr>
+<tr>
+<td> Business Name :  </td>
+<td style="padding: 10px;
+				border-top: 1px solid #fafafa;
+				background-color: #f4f4f4;
+				text-align: center;
+				color: #7d7d7d;"> <?php echo $row['name']; ?></td>
+</tr>
+<tr>
+<td> Gender:  </td>
+<td style="padding: 10px;
+				border-top: 1px solid #fafafa;
+				background-color: #f4f4f4;
+				text-align: center;
+				color: #7d7d7d;"> <?php echo $row['gender']; ?></td>
+</tr>
+<tr>
+<td> D.O.B:  </td>
+<td style="padding: 10px;
+				border-top: 1px solid #fafafa;
+				background-color: #f4f4f4;
+				text-align: center;
+				color: #7d7d7d;"> <?php echo $row['dob']; ?></td>
+</tr>
+<tr>
+<td> Admission Year :  </td>
+<td style="padding: 10px;
+				border-top: 1px solid #fafafa;
+				background-color: #f4f4f4;
+				text-align: center;
+				color: #7d7d7d;"> <?php echo $row['yoa']; ?></td>
+</tr>
+<tr>
+<td> Phone:  </td>
+<td style="padding: 10px;
+				border-top: 1px solid #fafafa;
+				background-color: #f4f4f4;
+				text-align: center;
+				color: #7d7d7d;"> <?php echo $row['phone']; ?></td>
+</tr>
+<tr>
+<td> Report :  </td>
+<td style="padding: 10px;
+				border-top: 1px solid #fafafa;
+				background-color: #f4f4f4;
+				text-align: center;
+				color: #7d7d7d;"> <?php echo $row['place']; ?></td>
+</tr>
 
 
-<input type="text" style="height:35px; color:#222;" name="filter" value="" id="filter" placeholder="Search Licenses..." autocomplete="off" />
-<a href="addstudent.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add License</button></a><br><br>
-<table class="hoverTable" id="resultTable" data-responsive="table" style="text-align: left;">
-	<thead>
-		<tr>
-			<th width="15%"> ID</th>
-			<th width="20%"> Business Name </th>
-			<th width="10%"> Gender </th>
-			<th width="10%"> Admittion Year </th>
-			<th width="10%"> Phone </th>
-			<th width="15%"> Action </th>
-		</tr>
-	</thead>
-	<tbody>
-		
-			<?php
-			
-				include('../connect.php');
-				$result = $db->prepare("SELECT * FROM student ORDER BY id DESC");
-				$result->execute();
-				for($i=0; $row = $result->fetch(); $i++){
-				
-			?>
-		
-<td><?php echo $row['b_id']; ?></td>
-			<td><?php echo $row['name']; ?> 
-			<td><?php echo $row['gender']; ?></td>
-			<td><?php echo $row['yoa']; ?></td>
-			<td><?php echo $row['phone']; ?></td>
-			<td><a title="Click to view the Student" href="viewstudent.php?id=<?php echo $row['id']; ?>"><button class="btn btn-success btn-mini"><i class="icon-search"></i> View</button> </a>
-			<a  title="Click to edit the Student" href="editstudent.php?id=<?php echo $row['id']; ?>"><button class="btn btn-warning btn-mini"><i class="icon-edit"></i> Edit</button> </a>
-			<a  href="#" id="<?php echo $row['id']; ?>" class="delbutton" title="Click To Delete"><button class="btn btn-danger btn-mini"><i class="icon-trash"></i> Delete</button></a></td>
-			</tr>
-			<?php
-				}
-			?>
-		
-		
-		
-	</tbody>
 </table>
-<div class="clearfix"></div>
+<br>
+			
+</center>
+
 </div>
-</div>
-</div>
+<?php
+}
+?>
 
 <script src="js/jquery.js"></script>
   <script type="text/javascript">

@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>
-Model :: Student Information System
+BRL
 </title>
  <link href="css/bootstrap.css" rel="stylesheet">
 

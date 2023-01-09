@@ -52,12 +52,12 @@
 	//Create query
 	$qry="SELECT * FROM user WHERE username='$login' AND password='$password'";
 	$result=mysqli_query($link,$qry);
-	
+$member = mysqli_fetch_assoc($result);
 	//Check whether the query was successful or not
-	if($result) {
-		if(mysqli_num_rows($result) > 0) {
+	
 			//Login Successful
-			$member = mysqli_fetch_assoc($result);
+			
+		if ($member["usertype"] == "admin") {
 			$_SESSION['SESS_MEMBER_ID'] = $member['id'];
 			$_SESSION['SESS_FIRST_NAME'] = $member['name'];
 			$_SESSION['SESS_LAST_NAME'] = $member['position'];
@@ -65,12 +65,20 @@
 			session_write_close();
 			header("location: main/index.php");
 			exit();
-		}else {
-			//Login failed
-			header("location: index.php");
-			exit();
 		}
-	}else {
+		elseif($member["usertype"] == "user") {
+			$_SESSION['SESS_MEMBER_ID'] = $member['id'];
+			$_SESSION['SESS_FIRST_NAME'] = $member['name'];
+			$_SESSION['SESS_LAST_NAME'] = $member['position'];
+	//$_SESSION['SESS_PRO_PIC'] = $member['profImage'];
+	session_write_close();
+	header("location: main/index1.php");
+	exit();
+}
+			
+			
+		
+	else {
 		die("Query failed");
 	}
 ?>

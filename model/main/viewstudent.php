@@ -186,7 +186,7 @@ window.onload=startclock;
 				border-top: 1px solid #fafafa;
 				background-color: #f4f4f4;
 				text-align: center;
-				color: #7d7d7d;"> <?php echo $row['student_id']; ?></td>
+				color: #7d7d7d;"> <?php echo $row['b_id']; ?></td>
 </tr>
 <tr>
 <td> Business Name :  </td>
@@ -194,7 +194,7 @@ window.onload=startclock;
 				border-top: 1px solid #fafafa;
 				background-color: #f4f4f4;
 				text-align: center;
-				color: #7d7d7d;"> <?php echo $row['name']; ?> <?php echo $row['last_name']; ?></td>
+				color: #7d7d7d;"> <?php echo $row['name']; ?></td>
 </tr>
 <tr>
 <td> Gender:  </td>
@@ -226,7 +226,7 @@ window.onload=startclock;
 				border-top: 1px solid #fafafa;
 				background-color: #f4f4f4;
 				text-align: center;
-				color: #7d7d7d;"> <?php echo $row['parent']; ?></td>
+				color: #7d7d7d;"> <?php echo $row['phone']; ?></td>
 </tr>
 <tr>
 <td> Report :  </td>
@@ -234,7 +234,7 @@ window.onload=startclock;
 				border-top: 1px solid #fafafa;
 				background-color: #f4f4f4;
 				text-align: center;
-				color: #7d7d7d;"> <?php echo $row['report']; ?></td>
+				color: #7d7d7d;"> <?php echo $row['place']; ?></td>
 </tr>
 
 

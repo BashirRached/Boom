@@ -10,7 +10,7 @@
 <html>
 <head>
 <title>
-Model :: Students Records Management System
+BRL
 </title>
     <link rel="shortcut icon" href="main/images/pos.jpg">
 
@@ -51,7 +51,7 @@ if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count
 ?>
 <form action="login.php" method="post">
 
-			<font style=" font:bold 44px 'Aleo'; color:#fff;"><center>Model's SRMS</center></font>
+			<font style=" font:bold 44px 'Aleo'; color:#fff;"><center>BRL System</center></font>
 		<br>
 
 		
